@@ -10,9 +10,17 @@ public class Planet : MonoBehaviour
     [SerializeField]
     private float distance;
 
+    [SerializeField]
+    private int life = 5;
+    private int currLife;
+
+    [SerializeField]
+    private float scaleIncrement = 1.0f;
+
     private void Start()
     {
         rigiB = gameObject.GetComponent<Rigidbody>();
+        currLife = life;
     }
 
     private void Update()
@@ -28,6 +36,34 @@ public class Planet : MonoBehaviour
         rigiB.velocity = new Vector3(0, 0, 0);
 
         rigiB.MovePosition(mouseWorldPos);
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Meteor")
+        {
+            Destroy(collision.gameObject);
+        }
+        onHit();
+    }
+
+    private void onHit()
+    {
+        if (currLife > 0)
+        {
+            --currLife;
+            shrinkSize();
+        } else
+        {
+            
+            // end game
+            Destroy(gameObject);
+        }
+    }
+
+    private void shrinkSize()
+    {
+        rigiB.transform.localScale += new Vector3(scaleIncrement, scaleIncrement, scaleIncrement);
     }
 
 }

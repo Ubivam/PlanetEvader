@@ -13,8 +13,6 @@ public class Meteor : MonoBehaviour {
 
     private Vector3 lastFramePosition;
 
-
-    
     private void Start()
     {
         planet = GameObject.FindObjectOfType<Planet>();
@@ -38,4 +36,5 @@ public class Meteor : MonoBehaviour {
         rigiB.AddForce((planet.transform.position - rigiB.transform.position).normalized *acceleration );
         lastFramePosition = rigiB.position;
     }
+
 }
