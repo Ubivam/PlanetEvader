@@ -24,7 +24,8 @@ public class MeteorLauncher : MonoBehaviour {
     void SpawnMeteore()
     {
         Vector3 position = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * distanceOfOrigin;
-        Instantiate(meteor, position, Quaternion.identity);
+        var gameObject = Instantiate(meteor, position, Quaternion.identity);
+        gameObject.transform.parent = transform;
     }
 	
 	// Update is called once per frame

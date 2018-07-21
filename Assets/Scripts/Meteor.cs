@@ -28,13 +28,11 @@ public class Meteor : MonoBehaviour {
     {
         float acceleration;
         if((rigiB.position-planet.transform.position).magnitude > (lastFramePosition - planet.transform.position).magnitude)
-        {
-            Debug.Log("Big Acceleration");
+        {;
             acceleration = bigAcceleration;
         }
         else
         {
-            Debug.Log("Small Acceleration");
             acceleration = smallAcceleration;
         }
         rigiB.AddForce((planet.transform.position - rigiB.transform.position).normalized *acceleration );
